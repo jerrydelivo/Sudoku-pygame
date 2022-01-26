@@ -27,7 +27,6 @@ class PlayingGameScene(Scene):
 
     def render(self):
         super(PlayingGameScene, self).render()
-
         self.getGame().screen.blit(self.__num_picked, (600, 50))
 
         game = self.getGame()
@@ -54,9 +53,18 @@ class PlayingGameScene(Scene):
             else:
                 self.getGame().screen.blit(self.__wrong, (580, 200))
         self.mouse = []
+        self.draw_cell_borders()
+
+    def draw_cell_borders(self):
+        pygame.draw.line(self.screen, (0,0,255), (75,225), (525,225), 3)
+        pygame.draw.line(self.screen, (0,0,255), (75,375), (525,375), 3)
+
+        pygame.draw.line(self.screen, (0,0,255), (375,75), (375,525), 3)
+        pygame.draw.line(self.screen, (0,0,255), (225,75), (225,525), 3)
 
     def displaybox(self, screen):
         pygame.draw.rect(self.screen, (86, 47, 14), [50, 50, 500, 500], 25)
+        
 
     def makeboard(self, game, tiles, calculate=False):
         bag = []
@@ -76,6 +84,7 @@ class PlayingGameScene(Scene):
             for j in range(0, 9):
                 game.screen.blit(numbers[n], (75 + GameConstants.TILE_SIZE[0] * i, 75 + GameConstants.TILE_SIZE[1] * j))
                 n = n + 1
+        
         return self.Board.checkboard() if calculate else None
 
     def cursor(self, pos):
@@ -130,7 +139,6 @@ class PlayingGameScene(Scene):
                     self.Board = Board()
 
                 if event.key == pygame.K_n:
-                    print('NNNNNNNNNN')
                     if self.result:
                         self.Board.next_move()
 
