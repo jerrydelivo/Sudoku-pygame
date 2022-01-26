@@ -1,7 +1,7 @@
 import pygame
 
-from Scenes import *
-from Shared import *
+from Game.Scenes import *
+from Game.Shared import *
 import os
 
 class Sudoku:

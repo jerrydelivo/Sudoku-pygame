@@ -1,5 +1,5 @@
-from Shared import GameObject
-from Shared import GameConstants
+from Game.Shared import GameObject
+from Game.Shared import GameConstants
 import random
 import copy
 import itertools

@@ -1,8 +1,9 @@
 from unittest import result
 import pygame
-from Scenes.Scene import Scene
-from Board.Board import Board
-from Shared.GameConstants import GameConstants
+from Game.Scenes.Scene import Scene
+from Game.Board.Board import Board
+from Game.Shared.GameConstants import GameConstants
+import sys
 
 class PlayingGameScene(Scene):
 
@@ -125,7 +126,7 @@ class PlayingGameScene(Scene):
 
         for event in events:
             if event.type == pygame.QUIT:
-                exit()
+                sys.exit()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse = pygame.mouse.get_pressed()
@@ -143,7 +144,7 @@ class PlayingGameScene(Scene):
                         self.Board.next_move()
 
                 if event.key == pygame.K_F4:
-                    exit()
+                    sys.exit()
 
                 key = event.key
 
