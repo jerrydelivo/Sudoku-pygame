@@ -3,32 +3,30 @@ import pygame
 import Level
 from Scenes import *
 from Shared import *
-
+import os
 
 class Sudoku:
 
     def __init__(self):
-        self.__score = 0
-        self.__time = ''
+        # self.__score = 0
+        # self.__time = ''
         self.__run = 0
 
         pygame.init()
-        pygame.mixer.init()
-        pygame.display.set_caption("Sudoku by Artelligence Machine")
+        # pygame.mixer.init()
+        pygame.display.set_caption("Sudoku by Gerasimos Delivorias")
 
-        self.__clock = pygame.time.Clock()
+        # self.__clock = pygame.time.Clock()
+        x = 100
+        y = 100
+        os.environ['SDL_VIDEO_WINDOW_POS'] = "%d,%d" % (x,y)
 
-        self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE, pygame.DOUBLEBUF, 32)
+        self.screen = pygame.display.set_mode(GameConstants.SCREEN_SIZE, pygame.RESIZABLE)
 
         self.__scenes = (
             PlayingGameScene(self),
-            HighScoreScene(self),
-            MenuScene(self),
-            Instructions(self),
-            GameOverScene(self),
-            SavingScene(self)
         )
-        self.__currentScene = 2
+        self.__currentScene = 0
 
         self.__sounds = (
             pygame.mixer.Sound(GameConstants.SOUND_FILE_CLICK),
@@ -38,13 +36,13 @@ class Sudoku:
 
     def start(self):
         while True:
-            self.__clock.tick(100)
+            # self.__clock.tick(100)
 
             self.screen.fill((205, 235, 235))
 
             currentScene = self.__scenes[self.__currentScene]
             currentScene.handleEvents(pygame.event.get())
-            currentScene.displaybox(self.screen)
+            # currentScene.displaybox(self.screen)
             currentScene.render()
 
             pygame.display.update()
@@ -53,17 +51,17 @@ class Sudoku:
         self.__currentScene = scene
 
 
-    def getLevel(self):
-        return self.__level
+    # def getLevel(self):
+    #     return self.__level
 
-    def getScore(self):
-        return self.__time
+    # def getScore(self):
+    #     return self.__time
 
-    def getTime(self):
-        return self.__time
+    # def getTime(self):
+    #     return self.__time
 
-    def setTime(self, time):
-        self.__time = time
+    # def setTime(self, time):
+    #     self.__time = time
 
     def playSound(self, soundClip):
         sound = self.__sounds[soundClip]
@@ -71,8 +69,8 @@ class Sudoku:
         sound.stop()
         sound.play()
 
-    def reduceTime(self):
-        self.__time += 1
+    # def reduceTime(self):
+    #     self.__time += 1
 
     def reset(self):
         self.__run = 0

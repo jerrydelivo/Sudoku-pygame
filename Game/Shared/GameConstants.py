@@ -2,7 +2,7 @@ import os
 
 
 class GameConstants:
-    SCREEN_SIZE = (900, 600)
+    SCREEN_SIZE = (100, 100)
     CURSOR_SIZE = (50, 50)
     TILE_SIZE = (50, 50)
 
@@ -11,7 +11,7 @@ class GameConstants:
     SPRITE_MENU = os.path.join("Assets", "Menu.jpg")
     SPRITE_MAINMENU = os.path.join("Assets", "MainMenu.png")
     SPRITE_PLAY = os.path.join("Assets", "Play.png")
-    SPRITE_CLOCK = os.path.join("Assets", "Clock.png")
+    # SPRITE_CLOCK = os.path.join("Assets", "Clock.png")
     SPRITE_PRIZE = os.path.join("Assets", "Prize.png")
     SPRITE_STAND = os.path.join("Assets", "Stand.png")
     SPRITE_INSTRUCTION = os.path.join("Assets", "Instruction.png")

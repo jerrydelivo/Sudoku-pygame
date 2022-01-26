@@ -3,15 +3,14 @@ from Scenes.Scene import Scene
 from Board.Board import Board
 from Shared.GameConstants import GameConstants
 
-
 class PlayingGameScene(Scene):
 
     def __init__(self, game):
         super(PlayingGameScene, self).__init__(game)
 
         self.game = game
-        self.run = 0
-        self.screen = pygame.display.set_mode()
+        self.run = 0        
+        self.screen = pygame.display.set_mode((700,600), 0, 32)
         self.counter = 0
         self.time = ''
         self.mouse = []
@@ -20,20 +19,20 @@ class PlayingGameScene(Scene):
 
         pygame.time.set_timer(pygame.USEREVENT, 1000)
 
-        self.__playSprite1 = pygame.image.load(GameConstants.SPRITE_CLOCK)
-        self.__playSprite2 = pygame.image.load(GameConstants.SPRITE_PLAY)
+        self.__num_picked = pygame.image.load(GameConstants.TILE_PATH + '/' + str(0) + '.jpg')
 
     def render(self):
         super(PlayingGameScene, self).render()
 
-        self.getGame().screen.blit(self.__playSprite1, (700, 50))
-        self.getGame().screen.blit(self.__playSprite2, (650, 350))
+        self.getGame().screen.blit(self.__num_picked, (600, 50))
 
         game = self.getGame()
 
         puzzle = Board.tiles(self)
 
         if self.key == 0 or len(self.mouse) == 0:
+            if self.key in range(1,10):
+                self.__num_picked = pygame.image.load(GameConstants.TILE_PATH + '/' + str(self.key) + '.jpg')
             PlayingGameScene.makeboard(self, game , puzzle)
             self.run += 1
 
@@ -47,7 +46,7 @@ class PlayingGameScene(Scene):
             else:
                 PlayingGameScene.makeboard(self, game, puzzle)
 
-        self.clearText()
+        # self.clearText()
 
     def setscore(self):
         puzzle = self.unsolve
@@ -131,7 +130,6 @@ class PlayingGameScene(Scene):
         for event in events:
             if event.type == pygame.QUIT:
                 exit()
-                Board.newboard()
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 mouse = pygame.mouse.get_pressed()
@@ -174,7 +172,7 @@ class PlayingGameScene(Scene):
                 text = str(self.counter)
                 text1 = int(text)
 
-                time = PlayingGameScene.clock(self, text1)
-                self.addText(time, x=700, y=175, size=50)
-                game =self.getGame()
-                game.setTime(time)
+                # time = PlayingGameScene.clock(self, text1)
+                # self.addText(time, x=700, y=175, size=50)
+                # game =self.getGame()
+                # game.setTime(time)
