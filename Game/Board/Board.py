@@ -1,25 +1,20 @@
 from Shared import GameObject
 from Shared import GameConstants
-from Puzzle import Puzzle
-from Level import Level
 
 
 class Board(GameObject):
 
-    def __init__(self, position, sprite, game):
-        self.__game = game
-        self.__tag = 1
-        self.solve = []
-        self.unsolve = []
+    def __init__(self):
         self.run = 0
+        self.last_move = []
+        self.board = [[0 for _ in range(9)] for _ in range(9)]
 
-        super(Board, self).__init__(position, GameConstants.TILE_SIZE, sprite)
 
     def tiles(self):
         if self.run == 0:
-            self.solve = Puzzle.build()
-            self.unsolve = Level.unsolve(self.solve)
-        return self.unsolve
+            self.board = [[0 for _ in range(9)] for _ in range(9)]
+
+        return self.board
 
     def checkboard(self, puzzle):
         n = len(puzzle)
@@ -49,14 +44,17 @@ class Board(GameObject):
     def update_board(self, mouse, key):
         x = mouse[0]
         y = mouse[1]
-        self.unsolve[x][y] = key
+        self.last_move = [x,y]
         return self.unsolve
 
     def newboard(self):
         self.run = 0
+        self.board = [[0 for _ in range(9)] for _ in range(9)]
 
     def getGame(self):
         return self.__game
 
     def isReplaceable(self):
         return self.__tag <= 0
+
+    

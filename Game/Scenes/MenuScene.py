@@ -34,7 +34,6 @@ class MenuScene(Scene):
                     exit()
 
                 if event.key == pygame.K_F1:
-                    self.getGame().playSound(GameConstants.SOUND_SCREEN)
                     self.getGame().changeScene(GameConstants.PLAYING_SCENE)
 
                 if event.key == pygame.K_F2:
