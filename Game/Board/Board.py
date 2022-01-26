@@ -9,6 +9,7 @@ class Board(GameObject):
     def __init__(self):
         self.run = 0
         self.board = [[0 for _ in range(9)] for _ in range(9)]
+        self.running = False
 
 
     def tiles(self):
@@ -60,11 +61,11 @@ class Board(GameObject):
     def solveSudoku(self, grid, i=0, j=0):
         i,j = self.findNextCellToFill(grid, i, j)
         if i == -1:
-                return True
+            return True
         for e in range(1,10):
             if self.isValid(grid,i,j,e):
                 grid[i][j] = e
-                if self.solveSudoku(grid, i, j):
+                if self.solveSudoku(grid, i, j):                    
                     return True
                     # Undo the current cell for backtracking
                 grid[i][j] = 0
@@ -79,25 +80,24 @@ class Board(GameObject):
             return False
     
     def next_move(self):
-        zero_tiles = []
-        for i, row in enumerate(self.board):
-            for j, col in enumerate(row):
-                if col == 0:
-                    zero_tiles.append([i,j])
-        try:
-            next_tile = random.choice(zero_tiles)
-        except:
-            return
-        random_order = list(range(1,10))
-        random.shuffle(random_order)
-        for num in random_order:
-            self.board[next_tile[0]][next_tile[1]] = num
-            
-            if self.checkboard():
-                break
-
-            
-        self.board[next_tile[0]][next_tile[1]] = num
+        if self.running == False:
+            self.running = True
+            zero_tiles = []
+            for i, row in enumerate(self.board):
+                for j, col in enumerate(row):
+                    if col == 0:
+                        zero_tiles.append([i,j])
+            try:
+                next_tile = random.choice(zero_tiles)
+            except:
+                return
+            random_order = list(range(1,10))
+            random.shuffle(random_order)
+            for num in random_order:
+                self.board[next_tile[0]][next_tile[1]] = num
+                if self.checkboard():
+                    self.running = False
+                    return
 
     def update_board(self, mouse, key):
         x = mouse[0]
