@@ -1,3 +1,4 @@
+from unittest import result
 import pygame
 from Scenes.Scene import Scene
 from Board.Board import Board
@@ -9,17 +10,20 @@ class PlayingGameScene(Scene):
         super(PlayingGameScene, self).__init__(game)
 
         self.game = game
-        self.Board = Board()        
-        self.screen = pygame.display.set_mode((700,600), 0, 32)
+        self.Board = Board()
+        self.screen = pygame.display.set_mode((800,600), 0, 32)
         self.counter = 0
         self.time = ''
         self.mouse = []
-        self.key = 0
+        self.key = None
         self.score = None
-
+        self.result = None
+        
         pygame.time.set_timer(pygame.USEREVENT, 1000)
 
         self.__num_picked = pygame.image.load(GameConstants.TILE_PATH + '/' + str(0) + '.jpg')
+        self.__correct = pygame.image.load(GameConstants.CORRECT_IMAGE)
+        self.__wrong = pygame.image.load(GameConstants.WRONG_IMAGE)
 
     def render(self):
         super(PlayingGameScene, self).render()
@@ -30,25 +34,31 @@ class PlayingGameScene(Scene):
 
         tiles = self.Board.tiles()
         
-        if self.key == 0 or len(self.mouse) == 0:
-            if self.key in range(1,10):
+        if self.key == None or len(self.mouse) == 0:
+            if self.key in range(10):
                 
                 self.__num_picked = pygame.image.load(GameConstants.TILE_PATH + '/' + str(self.key) + '.jpg')
             PlayingGameScene.makeboard(self, game , tiles)
-            self.Board.run += 1            
+            self.Board.run += 1
         elif 0 <= self.mouse[0] < 9 and 0 <= self.mouse[1] < 9:
             key = self.key
             x = self.mouse[0]
             y = self.mouse[1]
             tiles[x][y] = key
-            PlayingGameScene.makeboard(self, game, tiles)
-                
+            
+            self.result = PlayingGameScene.makeboard(self, game, tiles, calculate=True)
+            
+        if self.result in (True, False):
+            if self.result == True:
+                self.getGame().screen.blit(self.__correct, (550, 100))
+            else:
+                self.getGame().screen.blit(self.__wrong, (580, 200))    
         self.mouse = []
 
     def displaybox(self, screen):
         pygame.draw.rect(self.screen, (86, 47, 14), [50, 50, 500, 500], 25)
 
-    def makeboard(self, game, tiles):
+    def makeboard(self, game, tiles, calculate=False):
         bag = []
         for i in range(0, 9):
             for j in range(0, 9):
@@ -66,6 +76,7 @@ class PlayingGameScene(Scene):
             for j in range(0, 9):
                 game.screen.blit(numbers[n], (75 + GameConstants.TILE_SIZE[0] * i, 75 + GameConstants.TILE_SIZE[1] * j))
                 n = n + 1
+        return self.Board.checkboard() if calculate else None
 
     def cursor(self, pos):
         x = int(pos[0])

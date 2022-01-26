@@ -8,6 +8,9 @@ class GameConstants:
 
     TILE_PATH = os.path.join("Assets", "Digits")
 
+    CORRECT_IMAGE = os.path.join("Assets", "correct.png")
+    WRONG_IMAGE = os.path.join("Assets", "wrong.png")
+
     SPRITE_MENU = os.path.join("Assets", "Menu.jpg")
     SPRITE_MAINMENU = os.path.join("Assets", "MainMenu.png")
     SPRITE_PLAY = os.path.join("Assets", "Play.png")
