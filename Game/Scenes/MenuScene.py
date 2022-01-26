@@ -1,6 +1,6 @@
 import pygame
-from Game.Scenes.Scene import Scene
-from Game.Shared import *
+from Scenes.Scene import Scene
+from Shared import *
 
 
 class MenuScene(Scene):

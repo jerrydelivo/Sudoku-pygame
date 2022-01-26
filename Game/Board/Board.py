@@ -1,7 +1,7 @@
-from Game.Shared import GameObject
-from Game.Shared import GameConstants
-from Game.Puzzle import Puzzle
-from Game import Level
+from Shared import GameObject
+from Shared import GameConstants
+from Puzzle import Puzzle
+from Level import Level
 
 
 class Board(GameObject):

@@ -1,7 +1,7 @@
 import pygame
-from Game.Scenes.Scene import Scene
-from Game.Board.Board import Board
-from Game.Shared.GameConstants import GameConstants
+from Scenes.Scene import Scene
+from Board.Board import Board
+from Shared.GameConstants import GameConstants
 
 
 class PlayingGameScene(Scene):

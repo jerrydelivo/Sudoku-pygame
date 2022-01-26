@@ -1,6 +1,6 @@
-from Game.Scenes.Scene import Scene
-from Game.Shared.GameConstants import GameConstants
-from Game import Highscore
+from Scenes.Scene import Scene
+from Shared.GameConstants import GameConstants
+from HighScore import Highscore
 
 import pygame
 

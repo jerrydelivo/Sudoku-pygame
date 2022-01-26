@@ -1,7 +1,8 @@
 import pygame
 
-from Game.Scenes import *
-from Game.Shared import *
+import Level
+from Scenes import *
+from Shared import *
 
 
 class Sudoku:

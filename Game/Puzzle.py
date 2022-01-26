@@ -1,5 +1,5 @@
 import random
-from Game.Board import Board
+from Board import Board
 
 
 class Puzzle:

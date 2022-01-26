@@ -1,6 +1,6 @@
-from Game.Scenes.Scene import Scene
-from Game.Shared import *
-from Game import Highscore
+from Scenes.Scene import Scene
+from Shared import *
+import HighScore
 import pygame
 
 

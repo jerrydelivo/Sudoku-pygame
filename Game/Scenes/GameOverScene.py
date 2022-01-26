@@ -1,6 +1,6 @@
-from Game.Scenes.Scene import Scene
-from Game.Shared import GameConstants
-from Game.Board import Board
+from Scenes.Scene import Scene
+from Shared import GameConstants
+from Board.Board import Board
 import pygame
 
 
