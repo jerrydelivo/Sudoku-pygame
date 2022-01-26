@@ -77,6 +77,27 @@ class Board(GameObject):
             return self.solveSudoku(copy_board)
         else:
             return False
+    
+    def next_move(self):
+        zero_tiles = []
+        for i, row in enumerate(self.board):
+            for j, col in enumerate(row):
+                if col == 0:
+                    zero_tiles.append([i,j])
+        try:
+            next_tile = random.choice(zero_tiles)
+        except:
+            return
+        random_order = list(range(1,10))
+        random.shuffle(random_order)
+        for num in random_order:
+            self.board[next_tile[0]][next_tile[1]] = num
+            
+            if self.checkboard():
+                break
+
+            
+        self.board[next_tile[0]][next_tile[1]] = num
 
     def update_board(self, mouse, key):
         x = mouse[0]

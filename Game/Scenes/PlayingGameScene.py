@@ -129,6 +129,11 @@ class PlayingGameScene(Scene):
                 if event.key == pygame.K_ESCAPE:
                     self.Board = Board()
 
+                if event.key == pygame.K_n:
+                    print('NNNNNNNNNN')
+                    if self.result:
+                        self.Board.next_move()
+
                 if event.key == pygame.K_F4:
                     exit()
 
