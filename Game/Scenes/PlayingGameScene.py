@@ -52,7 +52,7 @@ class PlayingGameScene(Scene):
             if self.result == True:
                 self.getGame().screen.blit(self.__correct, (550, 100))
             else:
-                self.getGame().screen.blit(self.__wrong, (580, 200))    
+                self.getGame().screen.blit(self.__wrong, (580, 200))
         self.mouse = []
 
     def displaybox(self, screen):
@@ -127,18 +127,7 @@ class PlayingGameScene(Scene):
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
-                    self.getGame().changeScene(GameConstants.MENU_SCENE)
-
-                if event.key == pygame.K_F1:
-                    self.getGame().changeScene(GameConstants.MENU_SCENE)
-
-                if event.key == pygame.K_F2:
-                    test = PlayingGameScene.setscore(self)
-                    if test == True:
-                        self.getGame().changeScene(GameConstants.SAVING_SCENE)
-                    else:
-                        self.getGame().playSound(GameConstants.SOUND_GAMEOVER)
-                        self.getGame().changeScene(GameConstants.GAMEOVER_SCENE)
+                    self.Board = Board()
 
                 if event.key == pygame.K_F4:
                     exit()

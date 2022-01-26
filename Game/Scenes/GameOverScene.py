@@ -38,4 +38,4 @@ class GameOverScene(Scene):
 
                 if event.key == pygame.K_F1:
                     Board.newboard(self)
-                    self.getGame().changeScene(GameConstants.MENU_SCENE)
+                    
